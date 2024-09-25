@@ -2,7 +2,7 @@
 VERSION = 6
 PATCHLEVEL = 6
 SUBLEVEL = 51
-EXTRAVERSION = -arm64_mvebu_cortexa72
+EXTRAVERSION = -mvebu-cortexa72
 NAME = Hurr durr I'ma ninja sloth
 
 # *DOCUMENTATION*
