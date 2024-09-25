@@ -23,7 +23,7 @@ jobs:
     - name: Building Kernel
       run: |
         export ARCH=arm64
-        expost CROSS_COMPILE=aarch64-linux-gnu-
+        export CROSS_COMPILE=aarch64-linux-gnu-
         cd linux
         make mvebu_defconfig
         make –j`nproc` deb-pkg
