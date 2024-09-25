@@ -26,7 +26,7 @@ jobs:
         export CROSS_COMPILE=aarch64-linux-gnu-
         cd linux
         make mvebu_defconfig
-        make –j`nproc` deb-pkg
+        make bindeb-pkg –j`nproc`
 
     - uses: actions/upload-artifact@v4
       with:
