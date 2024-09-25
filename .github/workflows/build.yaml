@@ -28,8 +28,11 @@ jobs:
         cd linux
         make mvebu_defconfig
         make --jobs=`nproc` bindeb-pkg
+        cd ..
+        mkdir output
+        mv *.deb ./output/
 
     - uses: actions/upload-artifact@v4
       with:
         name: debian-package
-        path: /*.deb
+        path: ./output/*.deb
