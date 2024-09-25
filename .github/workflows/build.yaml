@@ -1,0 +1,34 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test-ubuntu:
+    name: Test on Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y \
+          build-essential \
+          crossbuild-essential-arm64 \
+          bc
+
+    - name: Building Kernel
+      run: |
+        export ARCH=arm64
+        expost CROSS_COMPILE=aarch64-linux-gnu-
+        cd linux
+        make mvebu_defconfig
+        make –j`nproc` deb-pkg
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: debian-package
+        path: /*.deb
