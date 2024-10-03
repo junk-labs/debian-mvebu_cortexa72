@@ -1,6 +1,9 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'linux/**'
 
 jobs:
   test-ubuntu:
@@ -26,6 +29,7 @@ jobs:
         export ARCH=arm64
         export CROSS_COMPILE=aarch64-linux-gnu-
         cd linux
+        date "+%Y%m%d%H%M%S" > .version
         make mvebu_defconfig
         make --jobs=`nproc` bindeb-pkg
         cd ..
